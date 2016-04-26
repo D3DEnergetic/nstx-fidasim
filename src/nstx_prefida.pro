@@ -1,4 +1,4 @@
-PRO nstx_prefida, inputs, inter_grid=inter_grid,beam_grid=beam_grid
+PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
 
    profile_dir = file_dirname(source_file())
    fida_dir = GETENV('FIDASIM_DIR')
@@ -14,35 +14,35 @@ PRO nstx_prefida, inputs, inter_grid=inter_grid,beam_grid=beam_grid
                    load_neutrals:0,dump_dcx:0,verbose:1,$
                    install_dir:fida_dir,tables_file:fida_dir+'/tables/atomic_tables.h5'}
 
-    if not keyword_set(inter_grid) then begin
-        inter_grid = rz_grid(40.d0,150.d0,55,-130.d0,130.d0,130)
+    if not keyword_set(igrid) then begin
+        igrid = rz_grid(40.d0,150.d0,55,-130.d0,130.d0,130)
     endif
 
-    if not keyword_set(beam_grid) then begin
+    if not keyword_set(bgrid) then begin
         if total(strmatch(['nb_1a','nb_1b','nb_1c'],inputs.beam,/fold_case)) gt 0 then begin
             nbi_1b = nstx_beams('nb_1b')
-            beam_grid = beam_grid(nbi_1b,150.d0)
+            bgrid = beam_grid(nbi_1b,150.d0)
         endif else begin
             nbi_2b = nstx_beams('nb_2b')
-            beam_grid = beam_grid(nbi_2b,150.d0)
+            bgrid = beam_grid(nbi_2b,150.d0)
         endelse
     endif
     species_mix = current_fractions(inputs.einj)
-    inputs = create_struct(inputs,basic_inputs,beam_grid,"species_mix",species_mix)
+    inputs = create_struct(inputs,basic_inputs,bgrid,"species_mix",species_mix)
 
     nbi = nstx_beams(inputs.beam)
     if n_elements(inputs.spec_diag) ne 0 and inputs.spec_diag ne '' then begin
         spec = nstx_chords(inputs.spec_diag)
     endif
 
-    fields = read_geqdsk(inputs.geqdsk_file,inter_grid,flux=flux,g=g)
-    plasma = extract_transp_plasma(inputs.transp_file,inputs.time,inter_grid,flux,profiles=prof)
+    fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g)
+    plasma = extract_transp_plasma(inputs.transp_file,inputs.time,igrid,flux,profiles=prof)
 
     case strlowcase(inputs.dist_type) of
-        'nubeam': dist = read_nubeam(inputs.dist_file,inter_grid,btipsign=inputs.btipsign) 
+        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=inputs.btipsign) 
         'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign)
     endcase
 
-    prefida,inputs,inter_grid,nbi,plasma,fields,dist,spec=spec
+    prefida,inputs,igrid,nbi,plasma,fields,dist,spec=spec
 
 END
