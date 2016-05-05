@@ -40,6 +40,7 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
 
     case strlowcase(inputs.dist_type) of
         'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=inputs.btipsign) 
+        'mc_nubeam': dist = read_mc_nubeam(inputs.dist_file,btipsign=inputs.btipsign) 
         'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign)
     endcase
 
