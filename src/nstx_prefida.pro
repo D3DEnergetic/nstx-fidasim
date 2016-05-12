@@ -27,8 +27,8 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
             bgrid = beam_grid(nbi_2b,150.d0)
         endelse
     endif
-    species_mix = current_fractions(inputs.einj)
-    inputs = create_struct(inputs,basic_inputs,bgrid,"species_mix",species_mix)
+    cfracs = current_fractions(inputs.einj)
+    inputs = create_struct(inputs,basic_inputs,bgrid,"current_fractions",cfracs)
 
     nbi = nstx_beams(inputs.beam)
     if n_elements(inputs.spec_diag) ne 0 and inputs.spec_diag ne '' then begin
