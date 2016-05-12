@@ -31,8 +31,11 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
     inputs = create_struct(inputs,basic_inputs,bgrid,"current_fractions",cfracs)
 
     nbi = nstx_beams(inputs.beam)
-    if n_elements(inputs.spec_diag) ne 0 and inputs.spec_diag ne '' then begin
-        spec = nstx_chords(inputs.spec_diag)
+    w = where("spec_diag" eq strlowcase(TAG_NAMES(inputs)), nw)
+    if nw ne 0 then begin
+        if n_elements(inputs.spec_diag) ne 0 then begin
+            spec = nstx_chords(inputs.spec_diag)
+        endif
     endif
 
     fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g)

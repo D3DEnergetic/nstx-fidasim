@@ -21,6 +21,7 @@ FUNCTION nstx_chords, diags, calib=calib
     radius = []
     sigma_pi = []
     spot_size = []
+    id = []
     for i=0,n_elements(diags)-1 do begin
         w = where(diags[i] eq avail_diags,nw)
         if nw eq 0 then begin
@@ -29,6 +30,7 @@ FUNCTION nstx_chords, diags, calib=calib
         endif
         system = [system, cc.(w).system]
         nchan = nchan + cc.(w).nchan
+        id = [id,cc.(w).system+'_'+strcompress(string(indgen(cc.(w).nchan)),/remove_all)]
         axis = [[axis],[cc.(w).axis]]
         lens = [[lens],[cc.(w).lens]]
         radius = [radius,cc.(w).radius]
@@ -39,8 +41,8 @@ FUNCTION nstx_chords, diags, calib=calib
     if nchan eq 0 then begin
         error,'No valid FIDA/BES systems selected',/halt
     endif
-    return, {system:system,data_source:data_source, $
-             nchan:nchan,axis:axis,lens:lens,$
+    return, {system:strjoin(system,", ",/single),data_source:data_source, $
+             id:id, nchan:nchan,axis:axis,lens:lens,$
              radius:radius,sigma_pi:sigma_pi,spot_size:spot_size}
 
 END
