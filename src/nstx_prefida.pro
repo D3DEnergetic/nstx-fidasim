@@ -10,7 +10,7 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
                    ne_wght:50,np_wght:50,nphi_wght:100,emax_wght:100.0d0,$
                    nlambda_wght:1000,lambdamin_wght:647.d0,lambdamax_wght:667.d0,$
                    calc_npa:0,calc_brems:1,calc_bes:1,calc_fida:1,$
-                   calc_birth:1,calc_fida_wght:1,calc_npa_wght:0,dump_dcx:0,$
+                   calc_birth:0,calc_fida_wght:0,calc_npa_wght:0,dump_dcx:0,$
                    install_dir:fida_dir,tables_file:fida_dir+'/tables/atomic_tables.h5'}
 
     if not keyword_set(igrid) then begin
@@ -41,9 +41,11 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
     plasma = extract_transp_plasma(inputs.transp_file,inputs.time,igrid,flux,profiles=prof)
 
     case strlowcase(inputs.dist_type) of
-        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=inputs.btipsign) 
-        'mc_nubeam': dist = read_mc_nubeam(inputs.dist_file,btipsign=inputs.btipsign) 
-        'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign)
+        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=inputs.btipsign,$
+                  e_range=inputs.e_range, p_range=inputs.p_range) 
+        'mc_nubeam': dist=read_mc_nubeam(inputs.dist_file,btipsign=inputs.btipsign,$
+                     ntotal=inputs.ntotal,e_range=inputs.e_range,p_range=inputs.p_range) 
+        'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign,ntotal=inputs.ntotal)
     endcase
 
     prefida,inputs,igrid,nbi,plasma,fields,dist,spec=spec
