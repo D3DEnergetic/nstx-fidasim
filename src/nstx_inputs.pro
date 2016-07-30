@@ -5,6 +5,8 @@ FUNCTION nstx_inputs
     geqdsk_file = '/p/fida/lstagner/NSTX/g141648.00770'
     dist_file = '/p/fida/lstagner/NSTX/141648E01_fi_3.cdf'
     dist_type = 'nubeam'
+    e_range = [0.0, 100.0]
+    p_range = [-1.0, 1.0]    
     result_dir = '/p/fida/lstagner/NSTX/'
     btipsign = -1.0
     spec_diag = ['ACTIVE_VFIDA']
@@ -14,7 +16,6 @@ FUNCTION nstx_inputs
     einj = 90.47d0
     comment = 'TEST shot'
     runid='141648.00770'
-    
     inputs = vars_to_struct()
     return, inputs
 END

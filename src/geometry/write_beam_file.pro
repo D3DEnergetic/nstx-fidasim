@@ -4,49 +4,61 @@ PRO write_beam_file
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:69.3d0,XLBAPA:5.103d2,$
+              RTCENA:69.3d0,XLBAPA:[5.103d2],$
               XLBTNA:1.1307d3,XBZETA:5.691d1,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
  
     beam1B = {NAME:'1B', NBSHAP:1, $
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:59.1d0,XLBAPA:5.103d2,$
+              RTCENA:59.1d0,XLBAPA:[5.103d2],$
               XLBTNA:1.1352d3,XBZETA:6.038d1,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
   
     beam1C = {NAME:'1C', NBSHAP:1, $
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:48.7d0,XLBAPA:5.103d2,$
+              RTCENA:48.7d0,XLBAPA:[5.103d2],$
               XLBTNA:1.1389d3,XBZETA:6.385d1,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
 
     beam2A = {NAME:'2A', NBSHAP:1, $
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:1.299d2,XLBAPA:5.103d2,$
+              RTCENA:1.299d2,XLBAPA:[5.103d2],$
               XLBTNA:1.1253d3,XBZETA:1.0309d2,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
 
     beam2B = {NAME:'2B', NBSHAP:1, $
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:1.20d2,XLBAPA:5.103d2,$
+              RTCENA:1.20d2,XLBAPA:[5.103d2],$
               XLBTNA:1.134d3,XBZETA:1.0654d2,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
 
     beam2C = {NAME:'2C', NBSHAP:1, $
               FOCLZ:988.d0, FOCLR:988.d0, $
               DIVZ:1.36d-2, DIVR:4.94d-3, $
               BMWIDZ:21.5d0,BMWIDR: 6.d0, $
-              RTCENA:1.095d2,XLBAPA:5.103d2,$
+              RTCENA:1.095d2,XLBAPA:[5.103d2],$
               XLBTNA:1.142d3,XBZETA:1.0998d2,$
-              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1}
+              XYBAPA:0.d0,XYBSCA:0.d0,NLCO:1,$
+              NBAPSHA:[1], RAPEDGA:[11.d0], XZPEDGA:[30.25d0],$
+              XRAPOFFA:[0.d0], XZAPOFFA:[0.d0] }
 
     nb_1a = nubeam_geometry(beam1A)
     nb_1b = nubeam_geometry(beam1B)
