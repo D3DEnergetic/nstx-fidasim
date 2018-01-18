@@ -15,7 +15,7 @@ setenv FIDASIM_DIR /p/fida/FIDASIM
 setenv FC ifort
 setenv CC icc
 setenv CXX icpc 
-setenv {$FIDASIM_DIR}/deps/hdf5/bin:{$FIDASIM_DIR}/lib:{$PATH}
+setenv PATH {$FIDASIM_DIR}/deps/hdf5/bin:{$FIDASIM_DIR}/lib:{$PATH}
 setenv IDL_PATH +{$FIDASIM_DIR}:{$IDL_PATH}
 setenv PYTHONPATH {$FIDASIM_DIR}/lib/python
 limit stacksize unlimited
