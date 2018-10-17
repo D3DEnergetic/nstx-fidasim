@@ -10,7 +10,7 @@ FUNCTION nstx_inputs
     result_dir = '/p/fida/lstagner/NSTX/'
     btipsign = -1.0
     spec_diag = ['ACTIVE_VFIDA']
-    npa_diag = ['']
+    npa_diag = ['NSTXU_PSSNPA']
     beam = 'nb_1b'
     pinj = 1.98d0
     einj = 90.47d0

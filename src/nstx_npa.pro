@@ -1,4 +1,4 @@
-FUNCTION npa_chords, npa
+FUNCTION nstx_npa, npa
     
     ;;from TRANSP namelist
     ;;NPA/SSNPA settings
