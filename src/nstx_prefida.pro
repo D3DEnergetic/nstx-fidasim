@@ -46,6 +46,14 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
         endif
     endif
 
+    w = where("npa_diag" eq strlowcase(TAG_NAMES(inputs)),nw)
+    if nw ne 0 then begin
+        if n_elements(inputs.npa_diag) ne 0 then begin
+            npa = nstx_npa(inputs.npa_diag)
+            inputs.calc_npa = 1
+        endif
+    endif
+
     fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g)
     plasma = extract_transp_plasma(inputs.transp_file,inputs.time,igrid,flux,profiles=prof)
 
@@ -57,6 +65,6 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
         'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign,ntotal=inputs.ntotal)
     endcase
 
-    prefida,inputs,igrid,nbi,plasma,fields,dist,spec=spec
+    prefida,inputs,igrid,nbi,plasma,fields,dist,spec=spec,npa=npa
 
 END
