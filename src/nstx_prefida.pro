@@ -54,15 +54,15 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
         endif
     endif
 
-    fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g)
+    fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g,btipsign=btipsign)
     plasma = extract_transp_plasma(inputs.transp_file,inputs.time,igrid,flux,profiles=prof)
 
     case strlowcase(inputs.dist_type) of
-        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=inputs.btipsign,$
-                  e_range=inputs.e_range, p_range=inputs.p_range) 
-        'mc_nubeam': dist = read_mc_nubeam(inputs.dist_file,btipsign=inputs.btipsign,$
+        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=btipsign,$
+                  e_range=inputs.e_range, p_range=inputs.p_range)
+        'mc_nubeam': dist = read_mc_nubeam(inputs.dist_file,btipsign=btipsign,$
                      ntotal=inputs.ntotal,e_range=inputs.e_range,p_range=inputs.p_range) 
-        'spiral': dist = read_spiral(inputs.dist_file,btipsign=inputs.btipsign,ntotal=inputs.ntotal)
+        'spiral': dist = read_spiral(inputs.dist_file,btipsign=btipsign,ntotal=inputs.ntotal)
     endcase
 
     prefida,inputs,igrid,nbi,plasma,fields,dist,spec=spec,npa=npa

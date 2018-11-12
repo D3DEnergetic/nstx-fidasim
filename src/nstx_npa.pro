@@ -386,7 +386,7 @@ FUNCTION nstx_npa, npa
     a_shape = replicate(2,nchan)
     d_shape = replicate(2,nchan)
 
-    return, {nchan:nchan,system:npa,data_source:source_file(),$
+    return, {nchan:nchan,system:npa[0],data_source:source_file(),$
              id:id, radius:radius,a_shape:a_shape,d_shape:d_shape,$
              d_cent:d_cent,d_redge:d_redge,d_tedge:d_tedge, $
              a_cent:a_cent,a_redge:a_redge,a_tedge:a_tedge}
