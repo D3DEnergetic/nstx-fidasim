@@ -1,4 +1,4 @@
-FUNCTION write_npa_chords
+FUNCTION nstx_npa, npa
     
     ;;from TRANSP namelist
     ;;NPA/SSNPA settings
@@ -259,7 +259,7 @@ FUNCTION write_npa_chords
     
     nstxu_npa_solid_angle=!pi*aperture_radius_nstxu_npa^2/dcollimator_nstxu_npa^2.
     
-                        
+        case npa of 
             'NSTX_NPA': begin 
              ;;Intersection of NPA sightline and midplane
              xlos=npa_mid_nstx[*,0]
@@ -350,6 +350,45 @@ FUNCTION write_npa_chords
               stop
             end
         endcase
-    
+
+    npap = fltarr(nchan,3)
+    for i=0,nchan-1 do begin
+        npap[i,*] = [xhead[i],yhead[i],zhead[i]]
+    endfor
+
+    npa_mid = fltarr(nchan,3)
+    for i=0,nchan-1 do begin
+        npa_mid[i,*] = [xlos[i],ylos[i],zlos[i]]
+    endfor
+
+    a_cent = dblarr(3,nchan)
+    a_redge = dblarr(3,nchan)
+    a_tedge = dblarr(3,nchan)
+    d_cent = dblarr(3,nchan)
+    d_redge = dblarr(3,nchan)
+    d_tedge = dblarr(3,nchan)
+    radius = dblarr(nchan)    
+    id = strarr(nchan)    
+    for i=0,nchan-1 do begin
+        r0 = reform(npap[i,*])
+        v0 = reform(npa_mid[i,*]) - r0
+        v0 = v0/sqrt(total(v0*v0))
+        basis = line_basis(r0,v0)
+        a_cent[*,i] = basis##[0.0, 0.0, 0.0] + r0
+        a_redge[*,i] = basis##[0.0, ra[i], 0.0] + r0
+        a_tedge[*,i] = basis##[0.0, 0.0, ra[i]] + r0
+        d_cent[*,i] = basis##[-h[i], 0.0, 0.0] + r0
+        d_redge[*,i] = basis##[-h[i], ra[i], 0.0] + r0
+        d_tedge[*,i] = basis##[-h[i], 0.0, ra[i]] + r0
+        radius[i] = sqrt(xhead[i]^2 + yhead[i]^2)
+        id[i] = 'c' + strtrim(i,2)
+    endfor
+    a_shape = replicate(2,nchan)
+    d_shape = replicate(2,nchan)
+
+    return, {nchan:nchan,system:npa[0],data_source:source_file(),$
+             id:id, radius:radius,a_shape:a_shape,d_shape:d_shape,$
+             d_cent:d_cent,d_redge:d_redge,d_tedge:d_tedge, $
+             a_cent:a_cent,a_redge:a_redge,a_tedge:a_tedge}
 
 END

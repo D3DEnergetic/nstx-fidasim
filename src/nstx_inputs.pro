@@ -8,9 +8,8 @@ FUNCTION nstx_inputs
     e_range = [0.0, 100.0]
     p_range = [-1.0, 1.0]    
     result_dir = '/p/fida/lstagner/NSTX/'
-    btipsign = -1.0
     spec_diag = ['ACTIVE_VFIDA']
-    npa_diag = ['']
+    npa_diag = ['NSTX_NPA']
     beam = 'nb_1b'
     pinj = 1.98d0
     einj = 90.47d0
