@@ -11,7 +11,7 @@ module load git/2.27.0
 module load anaconda3/2021.05
 module load idl
 
-setenv FIDASIM_DIR /p/fida/FIDASIM
+setenv FIDASIM_DIR /p/fida/FIDASIM-dev
 setenv FC ifort
 setenv CC gcc 
 setenv CXX g++
