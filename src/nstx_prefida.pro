@@ -10,9 +10,10 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
                    n_halo:500000L,n_dcx:500000L,n_birth:10000L,$
                    ne_wght:50,np_wght:50,nphi_wght:100,emax_wght:100.0d0,$
                    nlambda_wght:1000,lambdamin_wght:647.d0,lambdamax_wght:667.d0,$
-                   calc_npa:0,calc_brems:0,calc_fida:0,calc_neutron:0,$
+                   calc_npa:0,calc_brems:0,calc_fida:0,calc_neutron:0,calc_cfpd:0,$
                    calc_bes:0,calc_dcx:0,calc_halo:0,calc_cold:0,$
                    calc_birth:0,calc_fida_wght:0,calc_npa_wght:0,calc_pfida:0,calc_pnpa:0,$
+                   adaptive:0,split_tol:0.d0,max_cell_splits:1,$
                    install_dir:fida_dir,tables_file:fida_dir+'/tables/atomic_tables.h5'}
 
     if not keyword_set(igrid) then begin
@@ -54,12 +55,12 @@ PRO nstx_prefida, inputs, igrid=igrid,bgrid=bgrid
         endif
     endif
 
-    fields = read_geqdsk(inputs.geqdsk_file,igrid,flux=flux,g=g,btipsign=btipsign)
-    plasma = extract_transp_plasma(inputs.transp_file,inputs.time,igrid,flux,profiles=prof)
+    fields = read_geqdsk(inputs.geqdsk_file,igrid,rho=rho,g=g,btipsign=btipsign)
+    fields.time *= 1.d-3 ;[s]
+    plasma = extract_transp_plasma(inputs.transp_file,fields.time,igrid,rho)
 
     case strlowcase(inputs.dist_type) of
-        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=btipsign,$
-                  e_range=inputs.e_range, p_range=inputs.p_range)
+        'nubeam': dist = read_nubeam(inputs.dist_file,igrid,btipsign=btipsign)
         'mc_nubeam': dist = read_mc_nubeam(inputs.dist_file,btipsign=btipsign,$
                      ntotal=inputs.ntotal,e_range=inputs.e_range,p_range=inputs.p_range) 
         'spiral': dist = read_spiral(inputs.dist_file,btipsign=btipsign,ntotal=inputs.ntotal)
