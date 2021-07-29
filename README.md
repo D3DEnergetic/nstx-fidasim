@@ -22,6 +22,7 @@ setenv PATH {$FIDASIM_DIR}/lib/scripts:{$PATH}
 setenv PATH {$FIDASIM_DIR}/deps/efit:{$PATH}
 setenv PATH {$FIDASIM_DIR}/deps/hdf5/bin:{$PATH}
 setenv IDL_PATH +{$FIDASIM_DIR}:{$IDL_PATH}
+setenv IDL_PATH +{/p/fida/nstx-fidasim-dev/src}:{$IDL_PATH}
 setenv PYTHONPATH {$FIDASIM_DIR}/lib/python
 
 limit stacksize unlimited
@@ -29,6 +30,7 @@ limit stacksize unlimited
 
 ## Example
 ```
-IDL> inputs = nstx_inputs()
-IDL> nstx_prefida,inputs
+IDL> inputs = nstx_inputs()                   ;get some inputs
+IDL> inputs.result_dir = '/u/username/folder' ;change default path
+IDL> nstx_prefida, inputs                     ;run prefida
 ```
