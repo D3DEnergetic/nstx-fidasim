@@ -58,7 +58,7 @@ FUNCTION nstx_npa, npa
                            CXRSTA_nstx[iDet]*sin(CXZETA_nstx[iDet]),$
                            CXYSTA_nstx[iDet] ]  
         ;intersection of npa detector and midplane in uvz coordinate
-        angle=CXZETA_nstx[iDet]-sign(Rtan_nstx_npa[iDet])*$
+        angle=CXZETA_nstx[iDet]-signum(Rtan_nstx_npa[iDet])*$
                                 acos(abs(Rtan_nstx_npa[iDet])/CXRSTA_nstx[iDet])     
         npa_mid_nstx[iDet,*]=[abs(Rtan_nstx_npa[iDet])*cos(angle),$
                               abs(Rtan_nstx_npa[iDet])*sin(angle),$
@@ -100,7 +100,7 @@ FUNCTION nstx_npa, npa
                          CXRSTA_tssnpa[iDet]*sin(CXZETA_tssnpa[iDet]),$
                          CXYSTA_tssnpa[iDet] ]  
         ;intersection of npa detector and midplane in uvz coordinate
-        angle=CXZETA_tssnpa[iDet]-sign(CXRTAN_tssnpa[iDet])*$
+        angle=CXZETA_tssnpa[iDet]-signum(CXRTAN_tssnpa[iDet])*$
                                   acos(abs(CXRTAN_tssnpa[iDet])/CXRSTA_tssnpa[iDet]) 
         tssnpa_mid[iDet,*]=[abs(CXRTAN_tssnpa[iDet])*cos(angle),$
                             abs(CXRTAN_tssnpa[iDet])*sin(angle),$
@@ -151,7 +151,7 @@ FUNCTION nstx_npa, npa
                          CXRSTA_rssnpa[iDet]*sin(CXZETA_rssnpa[iDet]),$
                          CXYSTA_rssnpa[iDet] ]  
         ;intersection of npa detector and midplane in uvz coordinate
-        angle=CXZETA_rssnpa[iDet]-sign(CXRTAN_rssnpa[iDet])*$
+        angle=CXZETA_rssnpa[iDet]-signum(CXRTAN_rssnpa[iDet])*$
                                   acos(abs(CXRTAN_rssnpa[iDet])/CXRSTA_rssnpa[iDet]) 
         rssnpa_mid[iDet,*]=[abs(CXRTAN_rssnpa[iDet])*cos(angle),$
                             abs(CXRTAN_rssnpa[iDet])*sin(angle),$
@@ -196,7 +196,7 @@ FUNCTION nstx_npa, npa
                          CXRSTA_pssnpa[iDet]*sin(CXZETA_pssnpa[iDet]),$
                          CXYSTA_pssnpa[iDet] ]  
         ;intersection of npa detector and midplane in uvz coordinate
-        angle=CXZETA_pssnpa[iDet]-sign(CXRTAN_pssnpa[iDet])*$
+        angle=CXZETA_pssnpa[iDet]-signum(CXRTAN_pssnpa[iDet])*$
                                   acos(abs(CXRTAN_pssnpa[iDet])/CXRSTA_pssnpa[iDet]) 
         pssnpa_mid[iDet,*]=[abs(CXRTAN_pssnpa[iDet])*cos(angle),$
                             abs(CXRTAN_pssnpa[iDet])*sin(angle),$
@@ -241,7 +241,7 @@ FUNCTION nstx_npa, npa
                             CXRSTA_nstxu_npa[iDet]*sin(CXZETA_nstxu_npa[iDet]),$
                             CXYSTA_nstxu_npa[iDet] ]  
         ;intersection of npa detector and midplane in uvz coordinate
-        angle=CXZETA_nstxu_npa[iDet]-sign(CXRTAN_nstxu_npa[iDet])*$
+        angle=CXZETA_nstxu_npa[iDet]-signum(CXRTAN_nstxu_npa[iDet])*$
                                   acos(abs(CXRTAN_nstxu_npa[iDet])/CXRSTA_nstxu_npa[iDet]) 
         nstxu_npa_mid[iDet,*]=[abs(CXRTAN_nstxu_npa[iDet])*cos(angle),$
                                abs(CXRTAN_nstxu_npa[iDet])*sin(angle),$
